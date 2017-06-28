@@ -19,7 +19,8 @@ func main() {
 		done <- true
 	}()
 	mustCopy(conn, os.Stdin)
-	conn.Close()
+	// conn.Close()
+	conn.(*net.TCPConn).CloseWrite() // Exercise 8.3
 	<-done
 }
 

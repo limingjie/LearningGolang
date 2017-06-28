@@ -37,7 +37,7 @@ func handleConn(conn net.Conn) {
 	fmt.Println("Connection from", conn.RemoteAddr(), "starts...")
 	input := bufio.NewScanner(conn)
 	for input.Scan() {
-		go echo(conn, input.Text(), 1*time.Second)
+		echo(conn, input.Text(), 1*time.Second)
 	}
 	conn.Close()
 	fmt.Println("Connection from", conn.RemoteAddr(), "ends.")
