@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"net"
 	"os"
@@ -16,9 +15,10 @@ func main() {
 		return
 	}
 
-	fmt.Println("Press Enter to exit...")
 	go connectClocks(args)
-	bufio.NewReader(os.Stdin).ReadByte()
+
+	fmt.Println("Press Enter to exit...")
+	os.Stdin.Read(make([]byte, 1))
 }
 
 func connectClocks(args []string) {
@@ -36,10 +36,11 @@ func connectClocks(args []string) {
 	}
 
 	for {
-		fmt.Printf("\r")
+		fmt.Printf("\r\t")
 		for i, loc := range locations {
 			fmt.Printf("%10s %s\t", loc, timestamps[i])
 		}
+		fmt.Printf("\r")
 		time.Sleep(100 * time.Millisecond)
 	}
 }
